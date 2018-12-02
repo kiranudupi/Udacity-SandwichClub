@@ -3,7 +3,6 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +16,12 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
-    private ImageView mIngredientsIv;
+    private ImageView mSandwichImageIv;
     private TextView mMainNameTv;
-    private TextView mAlsoKnownAs;
+    private TextView mAlsoKnownAsTv;
+    private TextView mPlaceOfOriginTv;
+    private TextView mDescriptionTv;
+    private TextView mIngredientsTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(sandwich.getImage()).placeholder(R.drawable.baseline_image_white_48dp)
                 .error(R.drawable.baseline_broken_image_white_48dp)
-                .into(mIngredientsIv);
+                .into(mSandwichImageIv);
 
         setTitle(sandwich.getMainName());
     }
@@ -63,21 +65,37 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void prepareUI()
-    {
-        mIngredientsIv = findViewById(R.id.iv_image);
+    private void prepareUI() {
+        mSandwichImageIv = findViewById(R.id.iv_image);
         mMainNameTv = findViewById(R.id.tv_main_name);
-        mAlsoKnownAs = findViewById(R.id.tv_also_known_as);
+        mAlsoKnownAsTv = findViewById(R.id.tv_also_known_as);
+        mPlaceOfOriginTv = findViewById(R.id.tv_place_of_origin);
+        mDescriptionTv = findViewById(R.id.tv_description);
+        mIngredientsTv = findViewById(R.id.tv_ingredients);
     }
+
     private void populateUI(Sandwich sandwich) {
         mMainNameTv.setText(sandwich.getMainName());
 
         String alsoKnownAs = null;
-        //Log.d("sandwich","count: " + sandwich.getAlsoKnownAs().size());
-        if(sandwich.getAlsoKnownAs() == null)
+        if (sandwich.getAlsoKnownAs() == null)
             alsoKnownAs = getString(R.string.detail_also_known_as_empty);
         else
-            alsoKnownAs = getString(R.string.detail_also_known_as_label) + android.text.TextUtils.join(", ", sandwich.getAlsoKnownAs());
-        mAlsoKnownAs.setText(alsoKnownAs);
+            alsoKnownAs = android.text.TextUtils.join(", ", sandwich.getAlsoKnownAs());
+        mAlsoKnownAsTv.setText(alsoKnownAs);
+
+        if(sandwich.getPlaceOfOrigin().length() == 0)
+            mPlaceOfOriginTv.setText(getString(R.string.detail_not_known));
+        else
+            mPlaceOfOriginTv.setText(sandwich.getPlaceOfOrigin());
+
+        mDescriptionTv.setText(sandwich.getDescription());
+
+        String ingredients = null;
+        if (sandwich.getIngredients() == null)
+            ingredients = getString(R.string.detail_not_known);
+        else
+            ingredients = android.text.TextUtils.join(", ", sandwich.getIngredients());
+        mIngredientsTv.setText(ingredients);
     }
 }

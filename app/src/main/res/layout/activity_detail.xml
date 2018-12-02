@@ -1,44 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.udacity.sandwichclub.DetailActivity">
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="16dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/sandwich_picture_content_description"
-        android:background="@color/gray"
-        android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/tv_main_name"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_image"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/sandwich_name"
-        android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
-        android:layout_marginRight="@dimen/sandwich_layout_large_margin"
-        android:layout_marginBottom="@dimen/sandwich_layout_tiny_margin"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_also_known_as"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_main_name"
-        android:textSize="14sp"
-        android:textColor="@color/sandwich_also_known_as"
-        android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
-        android:layout_marginRight="@dimen/sandwich_layout_large_margin"
-        android:layout_marginBottom="@dimen/sandwich_layout_large_margin"/>
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            android:adjustViewBounds="true"
+            android:background="@color/gray"
+            android:contentDescription="@string/sandwich_picture_content_description"
+            android:scaleType="centerCrop" />
 
-</RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_main_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_image"
+            android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
+            android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+            android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+            android:textColor="@color/sandwich_name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_also_known_as_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_main_name"
+            android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
+            android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+            android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_also_known_as_label"
+                android:textColor="@color/sandwich_label"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_also_known_as"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/sandwich_value"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_place_of_origin_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_also_known_as_parent"
+            android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
+            android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+            android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_place_of_origin_label"
+                android:textColor="@color/sandwich_label"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_place_of_origin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/sandwich_value"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_place_of_origin_parent"
+            android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
+            android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+            android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+            android:textColor="@color/sandwich_value"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_ingredients_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_description"
+            android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
+            android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+            android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_ingredients_label"
+                android:textColor="@color/sandwich_label"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_ingredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/sandwich_value"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

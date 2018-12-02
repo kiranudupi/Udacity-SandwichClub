@@ -35,7 +35,11 @@ public class JsonUtils {
             String ingredientsList = sandwichJSON.getString("ingredients");
             ingredientsList = ingredientsList.replace("[","");
             ingredientsList = ingredientsList.replace("]","");
-            List<String> ingredients = new ArrayList<String>(Arrays.asList(ingredientsList.split(",")));
+            ingredientsList = ingredientsList.replace("]","");
+            ingredientsList = ingredientsList.replace("\"","");
+            List<String> ingredients = null;
+            if(ingredientsList.length() != 0)
+                ingredients = new ArrayList<String>(Arrays.asList(ingredientsList.split(",")));
 
             sandwich = new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
         } catch (JSONException e) {

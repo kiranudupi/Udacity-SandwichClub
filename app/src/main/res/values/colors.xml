@@ -3,9 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="gray">#ebebe0</color>
+    <color name="gray">#808080</color>
 
     <!-- Text Colors -->
     <color name="sandwich_name">#000000</color>
-    <color name="sandwich_also_known_as">#404040</color>
+    <color name="sandwich_label">#808080</color>
+    <color name="sandwich_value">#404040</color>
 </resources>
