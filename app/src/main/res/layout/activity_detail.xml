@@ -1,59 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.udacity.sandwichclub.DetailActivity">
 
     <ImageView
-        android:id="@+id/image_iv"
+        android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/sandwich_picture_content_description"
+        android:background="@color/gray"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/origin_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_main_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/detail_also_known_as_label"
-        android:textStyle="bold" />
+        android:layout_below="@+id/iv_image"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/sandwich_name"
+        android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+        android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+        android:layout_marginBottom="@dimen/sandwich_layout_tiny_margin"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_also_known_as"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/detail_ingredients_label"
-        android:textStyle="bold" />
+        android:layout_below="@+id/tv_main_name"
+        android:textSize="14sp"
+        android:textColor="@color/sandwich_also_known_as"
+        android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
+        android:layout_marginRight="@dimen/sandwich_layout_large_margin"
+        android:layout_marginBottom="@dimen/sandwich_layout_large_margin"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/detail_place_of_origin_label"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/description_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/ingredients_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/also_known_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/detail_description_label"
-        android:textStyle="bold" />
-</FrameLayout>
+</RelativeLayout>

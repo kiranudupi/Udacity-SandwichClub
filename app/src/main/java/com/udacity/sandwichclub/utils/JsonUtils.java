@@ -21,7 +21,10 @@ public class JsonUtils {
             String aliases = name.getString("alsoKnownAs");
             aliases = aliases.replace("[","");
             aliases = aliases.replace("]","");
-            List<String> alsoKnownAs = new ArrayList<String>(Arrays.asList(aliases.split(",")));
+            aliases = aliases.replace("\"","");
+            List<String> alsoKnownAs = null;
+            if(aliases.length() != 0)
+                alsoKnownAs = new ArrayList<String>(Arrays.asList(aliases.split(",")));
 
             String placeOfOrigin = sandwichJSON.getString("placeOfOrigin");
 
