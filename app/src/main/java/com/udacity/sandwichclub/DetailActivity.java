@@ -58,6 +58,7 @@ public class DetailActivity extends AppCompatActivity {
                 .into(mSandwichImageIv);
 
         setTitle(sandwich.getMainName());
+
     }
 
     private void closeOnError() {
@@ -66,6 +67,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void prepareUI() {
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mSandwichImageIv = findViewById(R.id.iv_image);
         mMainNameTv = findViewById(R.id.tv_main_name);
         mAlsoKnownAsTv = findViewById(R.id.tv_also_known_as);
