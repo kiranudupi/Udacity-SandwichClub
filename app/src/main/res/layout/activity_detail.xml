@@ -88,22 +88,38 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_description"
+        <LinearLayout
+            android:id="@+id/ll_description_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_place_of_origin_parent"
             android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
             android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
             android:layout_marginRight="@dimen/sandwich_layout_large_margin"
-            android:textColor="@color/sandwich_value"
-            android:textSize="14sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_description_label"
+                android:textColor="@color/sandwich_label"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_place_of_origin_parent"
+                android:textColor="@color/sandwich_value"
+                android:textSize="14sp" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_ingredients_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_description"
+            android:layout_below="@+id/ll_description_parent"
             android:layout_marginBottom="@dimen/sandwich_layout_large_margin"
             android:layout_marginLeft="@dimen/sandwich_layout_large_margin"
             android:layout_marginRight="@dimen/sandwich_layout_large_margin"
