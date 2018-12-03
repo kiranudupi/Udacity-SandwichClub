@@ -1,8 +1,11 @@
 package com.udacity.sandwichclub.utils;
 
+import com.udacity.sandwichclub.Constants.JSONUtilConstants;
 import com.udacity.sandwichclub.model.Sandwich;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,37 +14,58 @@ public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) {
 
-        JSONObject sandwichJSON = null;
+        JSONObject sandwichJSON;
         Sandwich sandwich = null;
         try {
             sandwichJSON = new JSONObject(json);
-            JSONObject name = sandwichJSON.getJSONObject("name");
-            String mainName = name.getString("mainName");
+            if (sandwichJSON.has(JSONUtilConstants.KEY_NAME)) {
+                JSONObject name = sandwichJSON.getJSONObject(JSONUtilConstants.KEY_NAME);
 
-            String aliases = name.getString("alsoKnownAs");
-            aliases = aliases.replace("[","");
-            aliases = aliases.replace("]","");
-            aliases = aliases.replace("\"","");
-            List<String> alsoKnownAs = null;
-            if(aliases.length() != 0)
-                alsoKnownAs = new ArrayList<String>(Arrays.asList(aliases.split(",")));
+                String mainName = JSONUtilConstants.NOT_AVAILABLE;
+                if(name.has(JSONUtilConstants.KEY_MAIN_NAME))
+                    mainName = name.getString(JSONUtilConstants.KEY_MAIN_NAME);
 
-            String placeOfOrigin = sandwichJSON.getString("placeOfOrigin");
+                String aliases = JSONUtilConstants.NOT_AVAILABLE;
+                List<String> alsoKnownAs = null;
+                if(name.has(JSONUtilConstants.KEY_ALSO_KNOWN_AS))
+                {
+                    aliases = name.getString(JSONUtilConstants.KEY_ALSO_KNOWN_AS);
+                    aliases = aliases.replace("[", "");
+                    aliases = aliases.replace("]", "");
+                    aliases = aliases.replace("\"", "");
+                    if (aliases.length() != 0)
+                        alsoKnownAs = new ArrayList<>(Arrays.asList(aliases.split(",")));
+                }
 
-            String description = sandwichJSON.getString("description");
 
-            String image = sandwichJSON.getString("image");
+                String placeOfOrigin = JSONUtilConstants.NOT_AVAILABLE;
+                if(name.has(JSONUtilConstants.KEY_PLACE_OF_ORIGIN))
+                    placeOfOrigin = name.getString(JSONUtilConstants.KEY_PLACE_OF_ORIGIN);
 
-            String ingredientsList = sandwichJSON.getString("ingredients");
-            ingredientsList = ingredientsList.replace("[","");
-            ingredientsList = ingredientsList.replace("]","");
-            ingredientsList = ingredientsList.replace("]","");
-            ingredientsList = ingredientsList.replace("\"","");
-            List<String> ingredients = null;
-            if(ingredientsList.length() != 0)
-                ingredients = new ArrayList<String>(Arrays.asList(ingredientsList.split(",")));
+                String description = JSONUtilConstants.NOT_AVAILABLE;
+                if(sandwichJSON.has(JSONUtilConstants.KEY_DESCRIPTION))
+                    description = sandwichJSON.getString(JSONUtilConstants.KEY_DESCRIPTION);
 
-            sandwich = new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
+                String image = null;
+                if(sandwichJSON.has(JSONUtilConstants.KEY_IMAGE))
+                    image = sandwichJSON.getString(JSONUtilConstants.KEY_IMAGE);
+
+                String ingredientsList = null;
+                List<String> ingredients = null;
+                if(sandwichJSON.has(JSONUtilConstants.KEY_INGREDIENTS))
+                {
+                    ingredientsList = sandwichJSON.getString(JSONUtilConstants.KEY_INGREDIENTS);
+                    ingredientsList = ingredientsList.replace("[", "");
+                    ingredientsList = ingredientsList.replace("]", "");
+                    ingredientsList = ingredientsList.replace("]", "");
+                    ingredientsList = ingredientsList.replace("\"", "");
+                    if (ingredientsList.length() != 0)
+                        ingredients = new ArrayList<>(Arrays.asList(ingredientsList.split(",")));
+                }
+
+
+                sandwich = new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

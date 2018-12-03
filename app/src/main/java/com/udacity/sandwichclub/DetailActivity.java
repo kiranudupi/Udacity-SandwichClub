@@ -11,22 +11,26 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
-    private ImageView mSandwichImageIv;
-    private TextView mMainNameTv;
-    private TextView mAlsoKnownAsTv;
-    private TextView mPlaceOfOriginTv;
-    private TextView mDescriptionTv;
-    private TextView mIngredientsTv;
+    @BindView(R.id.iv_image) ImageView mSandwichImageIv;
+    @BindView(R.id.tv_main_name) TextView mMainNameTv;
+    @BindView(R.id.tv_also_known_as) TextView mAlsoKnownAsTv;
+    @BindView(R.id.tv_place_of_origin) TextView mPlaceOfOriginTv;
+    @BindView(R.id.tv_description) TextView mDescriptionTv;
+    @BindView(R.id.tv_ingredients) TextView mIngredientsTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        ButterKnife.bind(this);
 
         prepareUI();
 
@@ -69,19 +73,12 @@ public class DetailActivity extends AppCompatActivity {
     private void prepareUI() {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mSandwichImageIv = findViewById(R.id.iv_image);
-        mMainNameTv = findViewById(R.id.tv_main_name);
-        mAlsoKnownAsTv = findViewById(R.id.tv_also_known_as);
-        mPlaceOfOriginTv = findViewById(R.id.tv_place_of_origin);
-        mDescriptionTv = findViewById(R.id.tv_description);
-        mIngredientsTv = findViewById(R.id.tv_ingredients);
     }
 
     private void populateUI(Sandwich sandwich) {
         mMainNameTv.setText(sandwich.getMainName());
 
-        String alsoKnownAs = null;
+        String alsoKnownAs;
         if (sandwich.getAlsoKnownAs() == null)
             alsoKnownAs = getString(R.string.detail_also_known_as_empty);
         else
@@ -95,7 +92,7 @@ public class DetailActivity extends AppCompatActivity {
 
         mDescriptionTv.setText(sandwich.getDescription());
 
-        String ingredients = null;
+        String ingredients;
         if (sandwich.getIngredients() == null)
             ingredients = getString(R.string.detail_not_known);
         else
